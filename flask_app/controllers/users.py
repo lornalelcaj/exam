@@ -82,9 +82,13 @@ def profile(id):
         data = {
             'user_id': id
         }
+        d = {
+            'user_id': session['user_id']
+        }
+        loggedUser = User.get_user_by_id(d)
         user = User.get_user_by_id(data)
         thoughts = User.get_all_user_info(data)
-        return render_template('profile.html', thoughts= thoughts, user= user)
+        return render_template('profile.html', thoughts= thoughts, user= user, loggedUser=loggedUser)
     return redirect('/logout')
 
 #Route to log the user out -- Clean the session
